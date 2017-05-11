@@ -7,8 +7,10 @@
    "test": "mocha ./spec",
     "start": "node server.js",
     "seed": "node seed.js",
-    "lint": "eslint ./*"
+    "lint": "eslint ./*",
+     "pre-commit": "lint" 
   },
+  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mj-e/nc-news-backend.git"

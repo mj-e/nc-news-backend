@@ -1,0 +1,40 @@
+{
+  "name": "nc-news-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "config.js",
+  "scripts": {
+   "test": "mocha ./spec",
+    "start": "node server.js",
+    "seed": "node seed.js",
+    "lint": "eslint ./*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mj-e/nc-news-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mj-e/nc-news-backend/issues"
+  },
+  "homepage": "https://github.com/mj-e/nc-news-backend#readme",
+  "dependencies": {
+    "async": "^2.4.0",
+    "body-parser": "^1.17.1",
+    "chance": "^1.0.8",
+    "cors": "^2.8.3",
+    "express": "^4.15.2",
+    "log4js": "^1.1.1",
+    "moment": "^2.18.1",
+    "mongoose": "^4.9.8",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.19.0",
+    "mocha": "^3.3.0",
+    "supertest": "^3.0.0"
+  }
+}

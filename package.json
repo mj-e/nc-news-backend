@@ -6,7 +6,7 @@
   "scripts": {
    "test": "mocha ./spec",
     "start": "node server.js",
-    "seed": "node seed.js",
+    "seed": "node seed/seed.js",
     "lint": "eslint ./*",
     "posttest": "npm run lint",
     "precommit": "npm run test"

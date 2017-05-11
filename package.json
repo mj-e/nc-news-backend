@@ -8,8 +8,8 @@
     "start": "node server.js",
     "seed": "node seed.js",
     "lint": "eslint ./*",
-    "precommit": "npm run lint",
-    "posttest": "npm run lint"
+    "posttest": "npm run lint",
+    "precommit": "npm run test"
   },
   
   "repository": {

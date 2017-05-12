@@ -3,6 +3,7 @@ const router = express.Router();
 const articleControllers = require('../controllers/articlesController');
 const commentControllers = require('../controllers/commentsController');
 const usersController = require('../controllers/usersController');
+const topicControllers = require('../controllers/topicsController');
 
 router.route('/').get(function (request, response) {
   response.status(200).send({status: 'OK'});
@@ -32,5 +33,8 @@ router.route('/users').get(usersController.getAllUsers);
 
 router.route('/users/:username').get(usersController.getUserProfile);
 
+router.route('/topics').get(topicControllers.getAllTopics);
+
+router.route('/topics/:belongs_to/articles').get(articleControllers.getArticlesByTopic);
 
 module.exports = router;

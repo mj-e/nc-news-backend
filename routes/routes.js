@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const articleControllers = require('../controllers/articlesController');
 const commentControllers = require('../controllers/commentsController');
+const usersController = require('../controllers/usersController');
 
 router.route('/').get(function (request, response) {
   response.status(200).send({status: 'OK'});
@@ -27,6 +28,9 @@ router.route('/comments/:comment_id').delete(commentControllers.deleteCommentByI
 
 router.route('/comments/:comment_id').put(commentControllers.commentVote);
 
+router.route('/users').get(usersController.getAllUsers);
+
+router.route('/users/:username').get(usersController.getUserProfile);
 
 
 module.exports = router;

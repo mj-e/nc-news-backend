@@ -19,7 +19,7 @@ mongoose.connect(DB, function (err) {
     }
 });
 
-app.use('/api', apiRouter);
+app.use('/', apiRouter);
 
 app.use('/*', function (request, response) {
     response.status(404).send({ reason: 'ROUTE NOT FOUND' });

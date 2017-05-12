@@ -154,7 +154,7 @@ describe('API ROUTES', () => {
                 });
         });
     });
-    xdescribe('POST comments to article by ID /articles/:article_id/comments', () => {
+    describe('POST comments to article by ID /articles/:article_id/comments', () => {
         it('POST comments to article by ID', (done) => {
             request(`${ROOT}`)
                 .post(`/articles/${sampleIds.article_id}/comments`)

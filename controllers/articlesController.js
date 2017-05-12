@@ -53,10 +53,8 @@ function postCommentToArticle(request, response) {
             });
             response.status(201).send({ comment: comment });
         }
-    ], function (err) {
-         if (err) {
-            console.log(err);
-        }
+    ], function () {
+
     });
 }
 

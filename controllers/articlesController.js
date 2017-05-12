@@ -57,7 +57,6 @@ function postCommentToArticle(request, response) {
          if (err) {
             console.log(err);
         }
-        console.log('Done');
     });
 }
 

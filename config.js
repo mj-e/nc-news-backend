@@ -8,3 +8,5 @@ module.exports = {
         dev: 3000
     }
 };
+
+// mongodb://nc-news:password@ds143241.mlab.com:43241/nc-news-backend

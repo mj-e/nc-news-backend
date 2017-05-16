@@ -13,11 +13,27 @@ function getArticlesByTopic(request, response) {
 }
 
 function getAllArticles(request, response) {
-    articlesModel.find({}, function (error, articles) {
-        if (error) {
-            return response.status(500).send({ error: error });
-        }
-        response.status(200).send({ articles: articles });
+    async.waterfall([
+        function (next) {
+            articlesModel.find({}, function (error, articles) {
+                if (error) {
+                    return next(error);
+                }
+                next(null, articles);
+            });
+        },
+        function (articles, done) {
+            async.mapSeries(articles, function (article, cb) {
+                commentsModel.find({belongs_to: article.id}, function (error, comments) {
+                    article = article.toObject();
+                    article.comments = comments.length;
+                    cb(null, article);
+                });
+            }, done);
+        }     
+    ], function (error, articles) {
+        if (error) return response.status(500).send({error: error});
+        response.status(200).send({articles});
     });
 }
 
@@ -66,13 +82,13 @@ function articleVote(request, response, next) {
     if (request.query.vote === 'down') {
         query = { $inc: { votes: -1 } };
     }
-    articlesModel.update(request.params.article_id, query, function (error, article) {
+    articlesModel.update({_id: request.params.article_id}, query, function (error) {
         if (error) {
             return next(error);
         }
-        next(null, article);
+        // next(null, article);
+    response.status(206).send({_id: request.params.article_id, article: 'VOTE REQUEST SUCCESSFUL' });
     });
-    response.status(206).send({ article: 'VOTE REQUEST SUCCESSFUL' });
 }
 
 module.exports = {

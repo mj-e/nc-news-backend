@@ -1,6 +1,5 @@
 if (!process.env.NODE_ENV) process.env.NODE_ENV = 'dev';
 
-
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -11,7 +10,6 @@ const DB = 'mongodb://nc-news:password@ds143241.mlab.com:43241/nc-news-backend';
 const PORT = config.PORT[process.env.NODE_ENV] || process.env.PORT;
 const app = express();
 const cors = require('cors');
-
 
 mongoose.Promise = global.Promise;
 mongoose.connect(DB, function (err) {

@@ -5,7 +5,7 @@ module.exports = {
     },
     PORT: {
         test: 3090, 
-        dev: 3000
+        dev: process.env.PORT || 3000
     }
 };
 

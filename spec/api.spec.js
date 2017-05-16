@@ -167,17 +167,27 @@ describe('API ROUTES', () => {
                 });
         });
     });
-    describe('Increase article votes up /articles/:article_id/comments', () => {
-        it('Increase article votes up', (done) => {
-            request(`${ROOT}`)
-                .put('/articles/58dd2c225eec68183cb2d872?vote=up')
-                .end((error, response) => {
-                    if (error) throw error;
-                    expect(response.statusCode).to.equal(206);
-                    expect(response.error).to.equal(false);
-                    expect(response.body).to.eql({ 'article': 'VOTE REQUEST SUCCESSFUL' });
-                    done();
+    describe('PUT increase article votes /articles/:articles_id', () => {
+        it('votes a comment up with database', (done) => {
+        request(`${ROOT}/articles/${sampleIds.article_id}`)
+          .put('/?vote=up')
+          .end((error, response) => {
+            if (error) throw error;
+            expect(response.statusCode).to.equal(206);
+            expect(response.body.article).to.equal('VOTE REQUEST SUCCESSFUL');
+            request(`${ROOT}/articles`)
+              .get('/')
+              .end((error, response) => {
+                if (error) throw error;
+                expect(response.statusCode).to.equal(200);
+                expect(response.body.articles).to.have.lengthOf(2);
+                var votedArticle = response.body.articles.filter(function (article) {
+                  return article._id.toString() === sampleIds.article_id.toString();
+                })[0];
+                expect(votedArticle.votes).to.equal(1);
+                done();
                 });
+            });
         });
     });
     describe('GET all comments /comments', () => {
@@ -213,19 +223,6 @@ describe('API ROUTES', () => {
                     if (error) throw error;
                     expect(response.statusCode).to.equal(204);
                     expect(response.error).to.equal(false);
-                    done();
-                });
-        });
-    });
-    describe('Increase comment vote up /comments/:comment_id', () => {
-        it('Increase comment votes up', (done) => {
-            request(`${ROOT}`)
-                .put('/comments/58dd2c225eec68183cb2d88b?vote=up')
-                .end((error, response) => {
-                    if (error) throw error;
-                    expect(response.statusCode).to.equal(206);
-                    expect(response.error).to.equal(false);
-                    expect(response.body).to.eql({ 'comment': 'COMMENT VOTE REQUEST SUCCESSFUL' });
                     done();
                 });
         });

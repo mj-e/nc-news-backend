@@ -4,11 +4,27 @@ const async = require('async');
 
 
 function getArticlesByTopic(request, response) {
+    async.waterfall([
+        function (next) {
     articlesModel.find({ belongs_to: request.params.belongs_to }, function (error, articles) {
         if (error) {
-            return response.status(500).send({ error: error });
+            return next(error);
         }
-        response.status(200).send({ articles: articles });
+        next(null, articles);
+    });
+},
+function (articles, done) {
+            async.mapSeries(articles, function (article, cb) {
+                commentsModel.find({belongs_to: article.id}, function (error, comments) {
+                    article = article.toObject();
+                    article.comments = comments.length;
+                    cb(null, article);
+                });
+            }, done);
+        }     
+    ], function (error, articles) {
+        if (error) return response.status(500).send({error: error});
+        response.status(200).send({articles});
     });
 }
 

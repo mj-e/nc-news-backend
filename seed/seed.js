@@ -97,7 +97,7 @@ function addTopics(done) {
 
 function addArticles(topicDocs, done) {
   logger.info('adding articles');
-  // will be a big array of strings
+
   const docIds = [];
   async.eachSeries(topicDocs, function (topic, cb) {
     const articles = articleData[topic.slug];

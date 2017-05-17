@@ -2,7 +2,6 @@ const articlesModel = require('../models/articles');
 const commentsModel = require('../models/comments');
 const async = require('async');
 
-
 function getArticlesByTopic(request, response) {
     async.waterfall([
         function (next) {

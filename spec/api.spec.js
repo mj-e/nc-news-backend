@@ -12,7 +12,7 @@ require('../server');
 mongoose.Promise = global.Promise;
 
 describe('API ROUTES', () => {
-    // Get some sample ids to use for future requests in the tests
+
     let sampleIds, invalidId, incorrectId;
 
     before(done => {
@@ -22,13 +22,10 @@ describe('API ROUTES', () => {
         saveTestData((idObj) => {
             sampleIds = idObj;
 
-            // also save some invalid IDs to test for errors
-            // explain the difference between an invalid/incorrect ID
             invalidId = sampleIds.article_id.toString().split('');
             invalidId[invalidId.length - 1] = '5345';
             invalidId = invalidId.join('');
 
-            // take an ID from another database
             incorrectId = '5841a06fed9db244975922c3';
             console.log('***************');
             console.log(sampleIds);
@@ -38,7 +35,6 @@ describe('API ROUTES', () => {
         });
     });
 
-    // Drop the database after test suite runs
     after(done => {
         mongoose.connection.db.dropDatabase(() => {
             done();

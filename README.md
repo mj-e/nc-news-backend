@@ -1,5 +1,8 @@
 # Northcoders News API
-Northcoders news is a full stack reactive news website, this API uses express and mongoose to serve data from a mongo db database.
+Northcoders news is a full stack reactive news website, this API uses express and mongoose to serve data from a mongo db database. The project is hosted on heroku and can be viewed at this link -
+
+[Northcoders News](https://northcoders-news-mje.herokuapp.com)
+
 ## Running on a local machine
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 ### Prerequisites

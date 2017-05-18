@@ -10,11 +10,11 @@ Please follow this guide to get the site up and running, from the command line e
 
 To clone the repository
 ```
-git clone https://github.com/mj-e/nc-news-backend.git
+git clone https://github.com/mj-e/northcoders-news-backend.git
 ```
 Change into the directory
 ```
-cd nc-news-backend
+cd northcoders-news-backend
 ```
 Install dependencies
 ```
